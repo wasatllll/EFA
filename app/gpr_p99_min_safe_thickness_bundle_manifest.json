@@ -1,0 +1,71 @@
+{
+  "bundle_file": "gpr_p99_min_safe_thickness_bundle.joblib",
+  "bundle_version": "LeFortI_P99_minimum_robustly_safe_thickness_v1.0",
+  "purpose": "Research-use-only, FEA-informed GPR calculator that enumerates six material-structure combinations and identifies the minimum robustly safe thickness within the validated domain.",
+  "input_schema": {
+    "required_user_inputs": [
+      "MaxillaryAdvancement_mm",
+      "LoadScenario"
+    ],
+    "automatically_enumerated": {
+      "Material": [
+        "Pure Ti",
+        "TC4"
+      ],
+      "Structure": [
+        "S1",
+        "S2",
+        "S3"
+      ]
+    },
+    "model_feature_order": [
+      "MaxillaryAdvancement_mm",
+      "Thickness_mm",
+      "Material",
+      "Structure"
+    ]
+  },
+  "study_constants": {
+    "Rp0.2_MPa": {
+      "Pure Ti": 408.921667,
+      "TC4": 1048.376111
+    },
+    "safety_rules": {
+      "stress_ratio_threshold": 0.8,
+      "prediction_interval_z": 1.96,
+      "advancement_domain_mm": [
+        2.0,
+        8.0
+      ],
+      "thickness_domain_mm": [
+        0.6,
+        2.0
+      ],
+      "search_step_mm": 0.01,
+      "display_increment_mm": 0.05
+    },
+    "validated_loads": [
+      "Vertical",
+      "Oblique"
+    ]
+  },
+  "interpretation": {
+    "robustly_safe_definition": "P99 upper 95% model-estimated limit / material Rp0.2 <= 0.80",
+    "scope": "Valid only for 2.0-8.0 mm maxillary advancement and 0.6-2.0 mm plate thickness.",
+    "boundary_note": "Candidate designs near the safety boundary require confirmatory FEA."
+  },
+  "training_environment": {
+    "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26100-SP0",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit_learn": "1.7.2",
+    "joblib": "1.5.2"
+  },
+  "source_artifacts": {
+    "Vertical_P99_gpr": "C:\\Users\\24223\\Desktop\\00EFA\\EFA_GPR_multitarget_main_validation_v3_png600\\model_artifacts\\Vertical\\P99_gpr.joblib",
+    "Oblique_P99_gpr": "C:\\Users\\24223\\Desktop\\00EFA\\EFA_GPR_multitarget_main_validation_v3_png600\\model_artifacts\\Oblique\\P99_gpr.joblib",
+    "Vertical_P99_sha256": "14127cb3a9aad8dcf8ff3cfbfa6d14895fff711b8a99d4e3ccd83ee6cb620754",
+    "Oblique_P99_sha256": "edcb52f37ed3d29a018ee54ce7a0e2f0c888989a09e975d7e9f53c3faff0fbe3"
+  }
+}
